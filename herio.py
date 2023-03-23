@@ -32,11 +32,6 @@ load_dotenv('token.env')
 description = "Greetings. I am the Raiden Shogun, the Electro Archon and the supreme ruler of the island nation of Inazuma"
 bot = commands.Bot(command_prefix="r!", intents=discord.Intents.all(), description=description)
 
-# token = "MTA3ODQ3Njc1MDg2ODIwMTUyMw.G9IhOl.B-UVzkHbqBR3dPLn0B6EaO1LaBn25XK9Xm5Tug"
-
-
-colors = [0xFFE4E1, 0x00FF7F, 0xD8BFD8, 0xDC143C, 0xFF4500, 0xDEB887, 0xADFF2F, 0x800000, 0x4682B4, 0x006400, 0x808080, 0xA0522D, 0xF08080, 0xC71585, 0xFFB6C1, 0x00CED1]
-
 ids = set()
 @bot.event
 async def on_ready():
@@ -46,7 +41,6 @@ async def on_ready():
     with open("user.txt") as f:
         for id in f:
             ids.add(id.strip())
-
 
 @bot.event
 async def on_message(message):
@@ -61,7 +55,6 @@ async def on_message(message):
         elif str(id) + "m" in contents:
             if number == 5:
                 await channel.send(random.choice(RAIDEN_HATE_MSG))
-    # print(f"{message.author}: {message}")
     print(f"{message.guild}/{message.channel}/{message.author.name}> Message: {message.content}")
 
     await bot.process_commands(message)
@@ -140,19 +133,6 @@ async def clear(ctx, amount=5):
     )
     await ctx.send(embed=clear)
 
-# today = date.today() # March 22 2023
-# today = datetime.strftime(today, "%Y/%m/%d")
-# str_new = '2023/3/21'
-# now = datetime.strptime(today, "%Y/%m/%d")
-# new = datetime.strptime(str_new, "%Y/%m/%d")
-# delta = now - new
-# print(f'Difference is {int(delta.total_seconds() / 60 / 60)} hours')
-
-"""
-    This is the code to calculate the time difference between 2 dates in hours
-    The example returns an output of 24 hours
-"""
-
 @bot.command()
 async def specisay(ctx, *,message):
    # await ctx.channel.purge(limit=1)
@@ -174,7 +154,7 @@ async def specisay(ctx, *,message):
 
     embed = discord.Embed(
         title="{}".format((" ".join(title)).translate(str.maketrans('', '', string.punctuation))),
-        color=random.choice(colors)
+        color=random.choice(COLORS)
     )
     embed.set_footer(text=" ".join(new))
     await ctx.send(embed=embed)
@@ -218,5 +198,3 @@ async def say(ctx,*, message, amount=1):
     await ctx.send(embed=embed)
 
 bot.run(os.getenv("TOKEN"))
-
-# token = os.getenv('TOKEN')
