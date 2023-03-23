@@ -1,5 +1,3 @@
-# BOT_TOKEN: str = "MTA3ODQ3Njc1MDg2ODIwMTUyMw.G9IhOl.B-UVzkHbqBR3dPLn0B6EaO1LaBn25XK9Xm5Tug"
-
 import discord
 import random
 
@@ -64,22 +62,3 @@ def makeEmbedThumbNail(title, link, d, tmb, mes):
     embed.set_footer(text=f"{mes}")
 
     return embed
-#### Create the initial embed object ####
-# embed=discord.Embed(title="Sample Embed", url="https://realdrewdata.medium.com/", description="This is an embed that will show how to build an embed and the different components", color=0x109319)
-
-# # Add author, thumbnail, fields, and footer to the embed
-# embed.set_author(name="RealDrewData", url="https://twitter.com/RealDrewData", icon_url="https://pbs.twimg.com/profile_images/1327036716226646017/ZuaMDdtm_400x400.jpg")
-
-# embed.set_thumbnail(url="https://i.imgur.com/axLm3p6.jpeg")
-
-# embed.add_field(name="Field 1 Title", value="This is the value for field 1. This is NOT an inline field.", inline=False)
-# embed.add_field(name="Field 2 Title", value="It is inline with Field 3", inline=True)
-# embed.add_field(name="Field 3 Title", value="It is inline with Field 2", inline=True)
-
-# embed.set_footer(text="This is the footer. It contains text at the bottom of the embed")
-
-    # embed = discord.Embed(
-    #     title = f"{PONG}",
-    #     color = random.choice(COLORS)
-    # )
-    # await ctx.send(embed=embed)
