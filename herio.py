@@ -30,7 +30,7 @@ from dotenv import load_dotenv
 
 load_dotenv('token.env')
 description = "Greetings. I am the Raiden Shogun, the Electro Archon and the supreme ruler of the island nation of Inazuma"
-bot = commands.Bot(command_prefix="r!", intents=discord.Intents.all(), description=description)
+bot = commands.Bot(command_prefix="r!", intents=discord.Intents.all(), description=description, help_command=None)
 
 ids = set()
 @bot.event
@@ -58,12 +58,19 @@ async def on_message(message):
     print(f"{message.guild}/{message.channel}/{message.author.name}> Message: {message.content}")
 
     await bot.process_commands(message)
-     
+
+"""
+    Dedicated Event commands ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    End of dedicated Event commands
+
+"""
+"""
+    Fun commands
+"""
+
 @bot.command(pass_context=True)
 async def register(ctx, *, message):
-    if message.lower() == "help":
-        await ctx.send(embed=makeEmbed("Register command", False, "Valid inputs: female, girl, woman, male, boy, man", "If input == female, girl, woman, bot will occasionally meow or bark at user"))
-    elif message.lower() == "female" or message.lower() == "girl" or message.lower() == "woman":
+    if message.lower() == "female" or message.lower() == "girl" or message.lower() == "woman":
         id = ctx.message.author.id
         with open("user.txt", "r+") as f:
             contents = f.read()
@@ -97,13 +104,6 @@ async def echo(ctx, *, content:str):
 
 @bot.command()
 async def google(ctx, *, message):
-    # embed = discord.Embed(
-    #     title=f"You googled {message}",
-    #     color=discord.Color.green()
-    # )
-    # await ctx.send(embed=embed)
-    # await ctx.send("https://google.com/search?q={}".format("+".join(message.split())))
-
     await ctx.send(embed=makeEmbed(f"Heres your link!", "https://google.com/search?q={}".format("+".join(message.split())), f"You Googled: {message}", False, "I wonder what you used this command for?"))
 
 @bot.command()
@@ -111,7 +111,6 @@ async def poll(ctx, *, message):
     await ctx.channel.purge(limit=1)
     member = ctx.message.author
     userAvatar = member.avatar.url
-
     msg = await ctx.send(embed=makeEmbedThumbNail(f"{random.choice(POLL_MESSAGES)}", False, f"From: {ctx.author.mention}", userAvatar, f"{message}"))
     await msg.add_reaction("⬆️")
     await msg.add_reaction("⬇️")
@@ -125,6 +124,33 @@ async def hello(ctx):
     await ctx.send(embed=emg)
 
 @bot.command()
+async def horni(ctx, arg=""):
+    imageBonk = "https://i.pinimg.com/originals/50/6e/e2/506ee22b38ada4c5390498809fca404f.jpg"
+    if arg == "":
+        bonk = discord.Embed(
+            title = 'Bonk',
+            description = f'{ctx.author.mention} gets bonked'
+        )
+        bonk.set_image(url=imageBonk)
+        await ctx.send(embed=bonk)
+    else:
+        boky = discord.Embed(
+            title = "Bonk",
+            description = f'{ctx.author.mention} bonks {arg} for being horni'
+
+        )
+        boky.set_image(url=imageBonk)
+        await ctx.send(embed=boky)
+
+"""
+    END Fun commands
+"""
+
+"""
+    Admin Commands
+"""
+
+@bot.command()
 @commands.has_permissions(kick_members=True)
 async def clear(ctx, amount=5):
     await ctx.channel.purge(limit=amount+1)
@@ -135,7 +161,6 @@ async def clear(ctx, amount=5):
 
 @bot.command()
 async def specisay(ctx, *,message):
-   # await ctx.channel.purge(limit=1)
     x = message.split()
     new = []
     title = []
@@ -159,31 +184,6 @@ async def specisay(ctx, *,message):
     embed.set_footer(text=" ".join(new))
     await ctx.send(embed=embed)
 
-
-@bot.command()
-async def horni(ctx, arg=""):
-    imageBonk = "https://i.pinimg.com/originals/50/6e/e2/506ee22b38ada4c5390498809fca404f.jpg"
-    if arg == "":
-        bonk = discord.Embed(
-            title = 'Bonk',
-            description = f'{ctx.author.mention} gets bonked'
-        )
-        bonk.set_image(url=imageBonk)
-        await ctx.send(embed=bonk)
-    else:
-        boky = discord.Embed(
-            title = "Bonk",
-            description = f'{ctx.author.mention} bonks {arg} for being horni'
-
-        )
-        boky.set_image(url=imageBonk)
-        await ctx.send(embed=boky)
-
-@bot.command()
-@commands.has_permissions(kick_members=True)
-async def quit(ctx):
-    sys.exit()
-
 @bot.command()
 @commands.has_permissions(kick_members=True)
 async def say(ctx,*, message, amount=1):
@@ -197,4 +197,51 @@ async def say(ctx,*, message, amount=1):
 
     await ctx.send(embed=embed)
 
+@bot.command()
+@commands.has_permissions(kick_members=True)
+async def quit(ctx):
+    sys.exit()
+
+"""
+    End of Admin Commands
+"""
+
+@bot.command()
+async def help(ctx, *, mes=None):
+    mes = None if mes == None else mes
+    if mes == None:
+        await ctx.send(embed=makeEmbed("Command list", False, "Command Categories", "NSFW\nFUN\nADMIN"))
+    elif mes.lower() in HELPDICT:
+        list = HELPDICT[mes]
+        await ctx.send(embed=makeEmbed(list[0], list[1], list[2], genRandResponse()))
+    
+    elif mes.lower() in COMMAND_DICT:
+        list =  COMMAND_DICT[mes]
+        await ctx.send(embed=makeEmbed(list[0], list[1], list[2], genRandResponse()))
+
+"""
+    NSFW Commands
+"""
+# https://nhentai.net/search/?q=raiden+shogun&sort=popular-week
+@bot.command() # raiden shogun, popular
+async def nhentai(ctx, *, mes=None):
+    mes = "" if mes == None else mes.split()
+    if mes == "":
+        await ctx.send(embed=makeEmbedThumbNail("Heres your random hentai link!", "https://nhentai.net/g/{}/".format(random.randint(10000, 999999)), "Most likely this link wont work, so feel free to call this command again to receive a random link!", LINK, genRandResponse()))
+    
+    elif mes[-1].lower() == "all-time":
+        x = mes.pop()
+        await ctx.send(embed=makeEmbedThumbNail(LINK_NSFW_REPLY, "https://nhentai.net/search/?q={}&sort=popular".format("+".join(mes)), nsfw_nh_reply(mes, x), LINK, genRandResponse()))
+    
+    else:
+        x = mes.pop()
+        await ctx.send(embed=makeEmbedThumbNail(LINK_NSFW_REPLY, "https://nhentai.net/search/?q={}&sort=popular-{}".format("+".join(mes), x), nsfw_nh_reply(mes, "popular-"+x), LINK, genRandResponse()))
+
+"""
+    End of NSFW Commands
+"""
+
+"""
+    Bot Run
+"""
 bot.run(os.getenv("TOKEN"))
