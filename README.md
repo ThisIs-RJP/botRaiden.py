@@ -4,4 +4,8 @@
 Raiden utility bot **(r!)**
 
 ### **Features**
-_Full list yet to be released ( bot still being made ) _
+_Full list yet to be released ( bot still being made )_
+
+**Change Log**
+
+
