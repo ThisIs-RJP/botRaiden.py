@@ -10,7 +10,7 @@ _Full list yet to be released ( bot still being made )_
 
 #### **July 6th**
 + _Countdown Commands begin development_
-+ _ Added **r!cdAdd** command. Successfully adds a time and event to a list and checks if it's a correct format **IN LENGTH** but cannot check if hours, minutes, seconds are correct_
++ _Added **r!cdAdd** command. Successfully adds a time and event to a list and checks if it's a correct format **IN LENGTH** but cannot check if hours, minutes, seconds are correct_
 + _Added **r!cdList**. Returns a list of all the countdowns made_
 
 ### **July 4th**
