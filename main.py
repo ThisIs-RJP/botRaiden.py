@@ -13,6 +13,7 @@ from countdown import *
 from cogs.admin import *
 from cogs.fun import *
 from cogs.nsfw import *
+from cogs.wishing import *
 from dotenv import load_dotenv, find_dotenv
 from itertools import cycle
 from async_timeout import timeout
@@ -45,17 +46,6 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    number = random.randint(1, 20)
-    id = message.author.id
-    channel = message.channel
-    with open("user.txt", "r+") as f:
-        contents = f.read()
-        if str(id) in contents and str(id)+"m" not in contents:
-            if number == 1:
-                await channel.send(random.choice(RAIDEN_SUB_MSG))
-        elif str(id) + "m" in contents:
-            if number == 5:
-                await channel.send(random.choice(RAIDEN_HATE_MSG))
     print(f"{message.guild}/{message.channel}/{message.author.name}> Message: {message.content}")
 
     await bot.process_commands(message)
@@ -84,7 +74,6 @@ async def help(ctx, *, mes=None):
 
         embed.add_field(name="Fun", value="**r!help fun** for a list of all commands")
         embed.add_field(name="Admin", value="**r!help admin** for a list of all commands")
-        embed.add_field(name="NSFW", value="**r!help nsfw** for a list of all commands")
 
         embed.set_footer(text=f"Still making new commands!")
 
@@ -110,4 +99,8 @@ async def help(ctx, *, mes=None):
 @commands.has_permissions(kick_members=True)
 async def quit(ctx):
     sys.exit()
+
+
+
+
 bot.run(TOKEN)
