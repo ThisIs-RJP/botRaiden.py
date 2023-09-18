@@ -38,7 +38,7 @@ class AdminCom(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(aliases=["purge"])
     @commands.has_permissions(kick_members=True)
     async def clear(self, ctx, amount=5, member: discord.Member = None):
         await ctx.channel.purge(limit=amount+1)
