@@ -36,49 +36,42 @@ class Fun(commands.Cog):
     Fun commands
         """
 
-    @commands.command(pass_context=True)
-    async def register(self, ctx, *, message):
-        if (
-            message.lower() == "female"
-            or message.lower() == "girl"
-            or message.lower() == "woman"
-        ):
-            id = ctx.message.author.id
-            with open("user.txt", "r+") as f:
-                contents = f.read()
-                if str(id) not in contents:
-                    print(str(id), file=f)
-                    await ctx.send("<3")
-                else:
-                    await ctx.send("Hey, you've registered (as a female) already!")
-
-        elif (
-            message.lower() == "male"
-            or message.lower() == "boy"
-            or message.lower() == "man"
-        ):
-            id = ctx.message.author.id
-            with open("user.txt", "r+") as f:
-                contents = f.read()
-                if str(id) + "m" not in contents and str(id) not in contents:
-                    print(str(id) + "m", file=f)
-                    await ctx.send("</3")
-                else:
-                    await ctx.send("Hey, you've registered (as a male) already!")
-            await ctx.send("Hmph")
-
-        else:
-            await ctx.send(INVALID_INPUT)
-
     @commands.command()
     async def ping(self, ctx):
         await ctx.send(embed=makeEmbed("PONG", False, False, "PONG"))
 
+    @commands.command(aliases=["8ball"])
+    async def magicball(self, ctx, *, message=""):
+        first = await ctx.send("https://media.tenor.com/eIGjlGMgVZkAAAAM/sml-bowser.gif")
+        await asyncio.sleep(3)
+        responses = [
+            "It is certain.",
+            "It is decidedly so.",
+            "Without a doubt.",
+            "Yes, definitely.",
+            "You may rely on it.",
+            "As I see it, yes.",
+            "Most likely.",
+            "Outlook good.",
+            "Yes.",
+            "Signs point to yes.",
+            "Reply hazy, try again.",
+            "Ask again later.",
+            "Better not tell you now.",
+            "Cannot predict now.",
+            "Concentrate and ask again.",
+            "Don't count on it.",
+            "My reply is no.",
+            "My sources say no.",
+            "Outlook not so good.",
+            "Very doubtful."
+            ]
+
+        await first.edit(content=f"||{random.choice(responses)}||\nYou asked ~*{message}*")
 
     @commands.command()
     async def echo(self, ctx, *, content: str):
         await ctx.send(content)
-
 
     @commands.command()
     async def google(self, ctx, *, message):
@@ -117,27 +110,6 @@ class Fun(commands.Cog):
         emg.set_image(url="https://media.tenor.com/qzqq5KFO1vkAAAAC/raiden-shogun.gif")
         await ctx.send(embed=emg)
 
-
-    @commands.command()
-    async def horni(self, ctx, arg=""):
-        imageBonk = (
-            "https://i.pinimg.com/originals/50/6e/e2/506ee22b38ada4c5390498809fca404f.jpg"
-        )
-        if arg == "":
-            bonk = discord.Embed(
-                title="Bonk", description=f"{ctx.author.mention} gets bonked"
-            )
-            bonk.set_image(url=imageBonk)
-            await ctx.send(embed=bonk)
-
-        else:
-            boky = discord.Embed(
-                title="Bonk",
-                description=f"{ctx.author.mention} bonks {arg} for being horni",
-            )
-            boky.set_image(url=imageBonk)
-            await ctx.send(embed=boky)
-    
     @commands.command()
     async def kiss(self, ctx, arg=""):
         gifGif = random.choice(KISS_LIST)
