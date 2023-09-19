@@ -70,6 +70,15 @@ class Fun(commands.Cog):
         await first.edit(content=f"||{random.choice(responses)}||\nYou asked ~*{message}*")
 
     @commands.command()
+    async def coin(self, ctx, *, message=""):
+
+        coin = ["Heads", "Tails"]
+        first = await ctx.send("https://media.tenor.com/bd3puNXKLwUAAAAM/coin-toss.gif")
+        await asyncio.sleep(4)
+
+        await first.edit(content=f"{random.choice(coin)}")
+
+    @commands.command()
     async def echo(self, ctx, *, content: str):
         await ctx.send(content)
 
