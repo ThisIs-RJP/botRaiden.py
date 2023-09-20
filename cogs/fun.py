@@ -112,13 +112,6 @@ class Fun(commands.Cog):
         await msg.add_reaction("⬆️")
         await msg.add_reaction("⬇️")
 
-
-    @commands.command()
-    async def hello(self, ctx):
-        emg = discord.Embed(title="TORN TO OBLIVION!")
-        emg.set_image(url="https://media.tenor.com/qzqq5KFO1vkAAAAC/raiden-shogun.gif")
-        await ctx.send(embed=emg)
-
     @commands.command()
     async def kiss(self, ctx, arg=""):
         gifGif = random.choice(KISS_LIST)
