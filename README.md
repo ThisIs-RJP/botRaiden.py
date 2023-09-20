@@ -9,7 +9,7 @@ _Full list yet to be released ( bot still being made )_
 ## **Change Log**
 
 #### **September 18**
-+ _Added **r!8ball** command. A magic 8 ball code. Self explanatory
++ _Added **r!8ball** command. A magic 8 ball code. Self explanatory_
 
 #### **July 6th**
 + _Countdown Commands begin development_
