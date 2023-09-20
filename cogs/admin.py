@@ -27,12 +27,6 @@ file = "cogs/times.txt"
 
 bot = commands.Bot(command_prefix="r!", intents=discord.Intents.all(), description=DESCRIPTION, help_command=None)
 times = {}
-with open(file) as f:
-    stuff = f.readlines()
-
-    for t in stuff:
-        time, event = t.split(";")
-        times[time.strip()] = event.strip()
 
 class AdminCom(commands.Cog):
     def __init__(self, bot):
