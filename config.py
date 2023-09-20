@@ -55,7 +55,6 @@ COMMAND_DICT: dict = {
     "cdFormat" : ["Countdown Format Command", False, "Returns the correct format to create timed events"],
 
     # FUN COMMANDS ############################################################
-    "register" : ["Register Command", False, "Inputs = Valid inputs: female, girl, woman, male, boy, man\nIf input == female, girl, woman, bot will occasionally meow or bark at user"],
     "poll" : ["Poll Command", False, "Inputs = [anything]\n Returns an embed of your opinion to which members that see this can use emojis to determine if your opinionis valid or not"],
     "google" : ["Google Command", False, "Inputs = [anything]\nReturns a link to what you requested to look up E.G (r!google the raiden shogun) will return a link to google of the raiden shogun"],
 }
