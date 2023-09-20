@@ -36,6 +36,6 @@ _Full list yet to be released ( bot still being made )_
 + _Bot created using old code from previous projects_
 + _Added a significant amount of commands, list below_
 + _Admin: Kick, Ban, Clear, Say, Specisay, Quit commands added_
-+ _Fun: Google
++ _Fun: Google_
 + _Created custom Help command_
 + _Raiden will print the messages of every server she is in into the terminal._
