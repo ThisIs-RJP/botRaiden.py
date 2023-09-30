@@ -28,7 +28,7 @@ POLL_MESSAGES: list = ["Another stupid opinion...", "NEVER LET THIS GUY COOK AGA
 INVALID_INPUT: str = "That doesn't look like a valid input?"
 HELPDICT: dict = {
     "fun" : ["Fun Commands (cap sensitive)", False, "Here are our Fun commands", "poll\ngoogle\nsay\n\nkiss"],
-    "admin" : ["Admin commands (cap sensitive, must have specific admin perms to call)", False, "Here are your admin commands", "clear\nsay\nspecisay\ncdAdd\ncdFormat"]
+    "admin" : ["Admin commands (cap sensitive, must have specific admin perms to call)", False, "Here are your admin commands", "clear\nsay\nspecisay\ncdAdd\ncdFormat\naddrole\nremoverole"]
 }
 
 KISS_LIST: list = ["https://aniyuki.com/wp-content/uploads/2021/07/aniyuki-anime-gif-kiss-14.gif",
@@ -44,19 +44,21 @@ KILL_LIST: list = []
 COMMAND_DICT: dict = {
     # TO ADD MORE COMMANDS HERE THE FORMAT
     """
-    '' : ['', False, '']
+    '' : ['', False, ''],
     """
     # ADMIN COMMANDS ###########################################################
 
-    "clear" : ["Clear/Purge Command", False, "Inputs = [integer], default=5\n Clears [integer] messages up to or the last 5 messages if integer is not specified"],
-    "say" : ["Say Command", False, "Inputs = [anything as long as the length of the message > 0]\nSends your message through an embed, useful for announcements"],
-    "specisay" : ["Specific Say Command", False, "Inputs = [anything as long as the length of the message > 0]\nSends your message through an embed, useful for announcements\nFormat: **r!specisay [This the title] This is the con"],
+    "clear" : ["Clear/Purge Command", "Usage: *r!clear <amount>*, default amount is 5", "Inputs = [integer], default=5\n Clears [integer] messages up to or the last 5 messages if integer is not specified"],
+    "say" : ["Say Command", "Usage: *r!say <message>*", "Inputs = [anything as long as the length of the message > 0]\nSends your message through an embed, useful for announcements"],
+    "specisay" : ["Specific Say Command", "Usage: *r!help <title name> <message>*", "Inputs = [anything as long as the length of the message > 0]\nSends your message through an embed, useful for announcements\nFormat: **r!specisay [This the title] This is the con"],
     "cdAdd" : ["Countdown Add Command", False, "Create an event to countdown to, follow with **r!cdFormat** for more details"],
     "cdFormat" : ["Countdown Format Command", False, "Returns the correct format to create timed events"],
+    'addrole' : ['Add Role Command', "Usage: *r!addrole <member> <role>*", 'Self explanatory'],
+    'removerole' : ['Remove Role Command', "Usage: *r!addrole <member> <role>*", 'Self Explanatory'],
 
     # FUN COMMANDS ############################################################
-    "poll" : ["Poll Command", False, "Inputs = [anything]\n Returns an embed of your opinion to which members that see this can use emojis to determine if your opinionis valid or not"],
-    "google" : ["Google Command", False, "Inputs = [anything]\nReturns a link to what you requested to look up E.G (r!google the raiden shogun) will return a link to google of the raiden shogun"],
+    "poll" : ["Poll Command", "Usage: *r!poll <message>*", "Inputs = [anything]\n Returns an embed of your opinion to which members that see this can use emojis to determine if your opinionis valid or not"],
+    "google" : ["Google Command", "Usage: *r!google <query>*", "Inputs = [anything]\nReturns a link to what you requested to look up E.G (r!google the raiden shogun) will return a link to google of the raiden shogun"],
 }
 
 """
