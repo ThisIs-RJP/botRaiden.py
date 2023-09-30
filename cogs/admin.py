@@ -27,8 +27,15 @@ file = "cogs/times.txt"
 
 bot = commands.Bot(command_prefix="r!", intents=discord.Intents.all(), description=DESCRIPTION, help_command=None)
 times = {}
+with open(file) as f:
+    stuff = f.readlines()
+
+    for t in stuff:
+        time, event = t.split(";")
+        times[time.strip()] = event.strip()
 
 class AdminCom(commands.Cog):
+
     def __init__(self, bot):
         self.bot = bot
 
@@ -65,6 +72,16 @@ class AdminCom(commands.Cog):
         )
         embed.set_footer(text=" ".join(new))
         await ctx.send(embed=embed)
+    
+    @commands.command()
+    async def addrole(self, ctx, member: discord.Member, role : discord.Role):
+        await member.add_roles(role)
+        await ctx.send(f"Added the {role} role!")
+    
+    @commands.command()
+    async def removerole(self, ctx, member: discord.Member, role : discord.Role):
+        await member.remove_roles(role)
+        await ctx.send(f"Removed the {role} role!")
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
