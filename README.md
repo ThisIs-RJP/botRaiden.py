@@ -8,6 +8,10 @@ _Full list yet to be released ( bot still being made )_
 
 ## **Change Log**
 
+#### **September 30**
++ _Added **r!addrole** and **r!removerole** commands. Self Explanatory.
++ _Added error handling. Raiden will now output an error when she encounters an error
+
 #### **September 18**
 + _Added **r!8ball** command. A magic 8 ball code. Self explanatory_
 
