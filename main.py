@@ -56,6 +56,11 @@ async def on_message(message):
 """
 
 
+@bot.event
+async def on_command_error(ctx, error):
+    await ctx.send(embed=makeEmbed("Invalid input!", None, "*Please make sure you're using this command right!*", "Try again after running *r!help*"))
+
+
 @bot.command()
 async def help(ctx, *, mes=None):
     mes = None if mes == None else mes.lower()
@@ -99,8 +104,5 @@ async def help(ctx, *, mes=None):
 @commands.has_permissions(kick_members=True)
 async def quit(ctx):
     sys.exit()
-
-
-
 
 bot.run(TOKEN)
