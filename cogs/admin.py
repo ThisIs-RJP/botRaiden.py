@@ -49,7 +49,21 @@ class AdminCom(commands.Cog):
         await ctx.send(embed=clear)
 
     @commands.command()
-    async def specisay(self, ctx, *,message):
+    @commands.has_permissions(kick_members=True)
+    async def say(self, ctx, * , message, amount=1):
+        await ctx.channel.purge(limit=amount)
+        embed = discord.Embed(
+            title="**Announcment!**",
+            description=f"From: {ctx.author.mention}\n\n**{message}**",
+            colour=discord.Color.green(),
+            timestamp=datetime.datetime.utcnow()
+            )
+
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def specisay(self, ctx, *,message, amount=1):
+        await ctx.channel.purge(limit=amount)
         x = message.split()
         new = []
         title = []
@@ -75,26 +89,19 @@ class AdminCom(commands.Cog):
     
     @commands.command()
     async def addrole(self, ctx, member: discord.Member, role : discord.Role):
-        await member.add_roles(role)
-        await ctx.send(f"Added the {role} role!")
+        if not ctx.author.guild_permissions.manage_roles:
+            await ctx.send(embed=makeEmbed("Error", None, "You don't have the necessary permissions to do this!", "Try again if you have the perms!"))
+        else:
+            await member.add_roles(role)
+            await ctx.send(f"Added the {role} role!")
     
     @commands.command()
     async def removerole(self, ctx, member: discord.Member, role : discord.Role):
-        await member.remove_roles(role)
-        await ctx.send(f"Removed the {role} role!")
-
-    @commands.command()
-    @commands.has_permissions(kick_members=True)
-    async def say(self, ctx, * , message, amount=1):
-        await ctx.channel.purge(limit=amount)
-        embed = discord.Embed(
-            title="**Announcment!**",
-            description=f"From: {ctx.author.mention}\n\n**{message}**",
-            colour=discord.Color.green(),
-            timestamp=datetime.datetime.utcnow()
-            )
-
-        await ctx.send(embed=embed)
+        if not ctx.author.guild_permissions.manage_roles:
+            await ctx.send(embed=makeEmbed("Error", None, "You don't have the necessary permissions to do this!", "Try again if you have the perms!"))
+        else:
+            await member.remove_roles(role)
+            await ctx.send(f"Removed the {role} role!")
     
     times = {}
     with open(file) as f:
@@ -181,8 +188,6 @@ class AdminCom(commands.Cog):
         # @commands.event()
         # async def cdAnnouncement(ctx):
 
-
-            
 
 """
     End of Admin Commands
