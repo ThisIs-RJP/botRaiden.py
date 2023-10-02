@@ -9,11 +9,11 @@ _Full list yet to be released ( bot still being made )_
 ## **Change Log**
 
 #### **October 2**
-+ _Started developing Blackjack program into the bot
++ _Started developing Blackjack program into the bot_
 
 #### **September 30**
-+ _Added **r!addrole** and **r!removerole** commands. Self Explanatory.
-+ _Added error handling. Raiden will now output an error when she encounters an error
++ _Added **r!addrole** and **r!removerole** commands. Self Explanatory._
++ _Added error handling. Raiden will now output an error when she encounters an error_
 
 #### **September 18**
 + _Added **r!8ball** command. A magic 8 ball code. Self explanatory_
