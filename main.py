@@ -12,8 +12,8 @@ from config import *
 from countdown import *
 from cogs.admin import *
 from cogs.fun import *
-from cogs.nsfw import *
 from cogs.wishing import *
+from cogs.blackjack import *
 from dotenv import load_dotenv, find_dotenv
 from itertools import cycle
 from async_timeout import timeout
@@ -34,7 +34,6 @@ async def on_ready():
 
     await bot.add_cog(AdminCom(bot))
     await bot.add_cog(Fun(bot))
-    await bot.add_cog(NSFW(bot))
 
     print('Logged in as:\n{0.user.name}\n{0.user.id}'.format(bot))
     await bot.change_presence(activity=discord. Activity(type=discord.ActivityType.watching, name='over Inazuma...'))
@@ -56,9 +55,9 @@ async def on_message(message):
 """
 
 
-@bot.event
-async def on_command_error(ctx, error):
-    await ctx.send(embed=makeEmbed("Invalid input!", None, "*Please make sure you're using this command right!*", "Try again after running *r!help*"))
+# @bot.event
+# async def on_command_error(ctx, error):
+#     await ctx.send(embed=makeEmbed("Invalid input!", None, "*Please make sure you're using this command right!*", "Try again after running *r!help*"))
 
 
 @bot.command()
