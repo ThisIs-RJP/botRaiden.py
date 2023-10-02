@@ -16,6 +16,7 @@ from async_timeout import timeout
 from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions, CheckFailure
 from itertools import cycle
+from cogs.blackjack import *
 
 """
     Admin Commands
@@ -112,6 +113,13 @@ class Fun(commands.Cog):
         await msg.add_reaction("⬆️")
         await msg.add_reaction("⬇️")
 
+
+    @commands.command()
+    async def hello(self, ctx):
+        emg = discord.Embed(title="TORN TO OBLIVION!")
+        emg.set_image(url="https://media.tenor.com/qzqq5KFO1vkAAAAC/raiden-shogun.gif")
+        await ctx.send(embed=emg)
+
     @commands.command()
     async def kiss(self, ctx, arg=""):
         gifGif = random.choice(KISS_LIST)
@@ -121,7 +129,7 @@ class Fun(commands.Cog):
         
         else:
             await ctx.send(embed=gifEmbed("Seems to be a little romance here?", gifGif, f"{ctx.author.mention} kisses {arg}", "Love is in the air tonight..."))
-
+    
     @commands.command()
     async def hug(self, ctx, arg=""):
         gifGif = random.choice(HUG_LIST)
@@ -141,6 +149,15 @@ class Fun(commands.Cog):
         
         else:
             await ctx.send(embed=gifEmbed("At least someones being nice", gifGif, f"{ctx.author.mention} kills {arg}", "How many hugs are you willing to give?"))
+    
+    @commands.command(aliases=["bj"])
+    async def blackjack(self, ctx):
+        game = Game(makeDeck())
+
+        for i in range(5):
+            await ctx.send(i)
+
+        await ctx.send("You are now playing a game of blackjack")
 
 """
     END Fun commands
