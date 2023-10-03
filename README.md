@@ -8,6 +8,9 @@ _Full list yet to be released ( bot still being made )_
 
 ## **Change Log**
 
+#### **October 3**
++ Implented an **r!urban** that takes the users input and performs a query search on Urban Dictionary_
+
 #### **October 2**
 + _Started developing Blackjack program into the bot_
 
