@@ -9,6 +9,7 @@ import sys, asyncio, functools, itertools, math, random, os, discord, aiohttp, i
 # from datetime import date
 # from datetime import datetime
 import datetime
+import requests
 from config import *
 from dotenv import load_dotenv, find_dotenv
 from itertools import cycle
@@ -78,6 +79,25 @@ class Fun(commands.Cog):
         await asyncio.sleep(4)
 
         await first.edit(content=f"{random.choice(coin)}")
+    
+    @commands.command()
+    async def urban(self, ctx, *, content: str):
+        start = "https://api.urbandictionary.com/v0/define"
+        params = {"term": content}
+
+        try:
+            response = requests.get(start, params=params)
+            data = response.json()
+            
+            if data.get("list"):
+                # Getting the first definition
+                first = data["list"][0]["definition"]
+                await ctx.send(embed=makeEmbed(f"Urban Dictionary Result for {content}", None, first, "Wanna keep trying?"))
+            else:
+                await ctx.send(embed=makeEmbed("No definitions found for the term.", None, first, "Wanna keep trying?"))
+        except requests.exceptions.RequestException as e:
+            await ctx.send(embed=makeEmbed("An error occured", None, first, "Wanna keep trying?"))
+            return f"An error occurred: {e}"
 
     @commands.command()
     async def echo(self, ctx, *, content: str):
