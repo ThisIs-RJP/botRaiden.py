@@ -81,23 +81,28 @@ class Fun(commands.Cog):
         await first.edit(content=f"{random.choice(coin)}")
     
     @commands.command()
-    async def urban(self, ctx, *, content: str):
-        start = "https://api.urbandictionary.com/v0/define"
-        params = {"term": content}
+    async def urban(self, ctx, *, content=""):
+        content = content
+        print(content)
+        if content == "":
+            await ctx.send(embed=makeEmbed("Invalid input", None, "You may have not included a search query for the command!", "Try again when you're ready"))
+        else:
+            start = "https://api.urbandictionary.com/v0/define"
+            params = {"term": content}
 
-        try:
-            response = requests.get(start, params=params)
-            data = response.json()
-            
-            if data.get("list"):
-                # Getting the first definition
-                first = data["list"][0]["definition"]
-                await ctx.send(embed=makeEmbed(f"Urban Dictionary Result for {content}", None, first, "Wanna keep trying?"))
-            else:
-                await ctx.send(embed=makeEmbed("No definitions found for the term.", None, first, "Wanna keep trying?"))
-        except requests.exceptions.RequestException as e:
-            await ctx.send(embed=makeEmbed("An error occured", None, first, "Wanna keep trying?"))
-            return f"An error occurred: {e}"
+            try:
+                response = requests.get(start, params=params)
+                data = response.json()
+                
+                if data.get("list"):
+                    # Getting the first definition
+                    first = data["list"][0]["definition"]
+                    await ctx.send(embed=makeEmbed(f"Urban Dictionary Result for {content}", None, first, "Wanna keep trying?"))
+                else:
+                    await ctx.send(embed=makeEmbed("No definitions found for the term.", None, f"Your seach query '*{content}*' probably doesn't exist", "Wanna keep trying?"))
+            except requests.exceptions.RequestException as e:
+                await ctx.send(embed=makeEmbed("An error occured", None, "Something went wrong", "Wanna keep trying?"))
+                return f"An error occurred: {e}"
 
     @commands.command()
     async def echo(self, ctx, *, content: str):
