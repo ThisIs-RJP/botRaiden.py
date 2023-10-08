@@ -8,8 +8,11 @@ _Full list yet to be released ( bot still being made )_
 
 ## **Change Log**
 
+#### **October 9**
++ _Started working on creating a "due date" command that will notify users if a certain day is a due date for an assignment_
+
 #### **October 3**
-+ Implented an **r!urban** that takes the users input and performs a query search on Urban Dictionary_
++ _Implented an **r!urban** that takes the users input and performs a query search on Urban Dictionary_
 
 #### **October 2**
 + _Started developing Blackjack program into the bot_
