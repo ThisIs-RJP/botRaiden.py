@@ -54,7 +54,27 @@ async def on_message(message):
     End of dedicated Event commands
 """
 
+# while True:
+#     dates = []
+#     with open(file2) as f:
+#         filedates = f.readlines()
 
+#         for line in filedates:
+#             dates.append(line)
+    
+
+#         f.close()
+
+#     with open(file2, "w") as f:
+#         f.write("\n".join(dates))
+#         f.close()
+    
+#     today = date.today
+
+#     if today in dates:
+#         @bot.event
+#         async def dueDue(ctx):
+#             await ctx.send
 # @bot.event
 # async def on_command_error(ctx, error):
 #     await ctx.send(embed=makeEmbed("Invalid input!", None, "*Please make sure you're using this command right!*", "Try again after running *r!help*"))
