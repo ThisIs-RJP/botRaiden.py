@@ -7,8 +7,7 @@
 import sys, asyncio, functools, itertools, math, random, os, discord, aiohttp, io, json, pickle, string, random
 # from datetime import date
 # from datetime import datetime
-import datetime
-
+from datetime import date
 # Configuration and Countdown Files
 from config import *
 from countdown import *
@@ -24,9 +23,11 @@ from itertools import cycle
     Admin Commands
 """
 file = "cogs/times.txt"
+file2 = "cogs/dates.txt"
 
 bot = commands.Bot(command_prefix="r!", intents=discord.Intents.all(), description=DESCRIPTION, help_command=None)
 times = {}
+
 with open(file) as f:
     stuff = f.readlines()
 
@@ -60,6 +61,24 @@ class AdminCom(commands.Cog):
             )
 
         await ctx.send(embed=embed)
+    
+    @commands.command()
+    async def addduedate(self, ctx, *, message):
+        contents = []
+        with open(file2) as f:
+            fileContents = f.readlines()
+            contents.append(message)
+
+            for line in fileContents:
+                contents.append(line)
+            
+            f.close()
+            
+        with open(file2, "w") as f:
+            f.write("\n".join(contents))
+            f.close()
+        
+        await ctx.send(embed=embedFields("Due date added!", f"Making sure that you will be notified on {message}!", "Please keep adding dates if needed", "***r!adddue*** to run!"))
 
     @commands.command()
     async def specisay(self, ctx, *,message, amount=1):
@@ -113,7 +132,6 @@ class AdminCom(commands.Cog):
             times[t[0].strip()] = t[1].strip()
     
     @commands.command()
-    # 2023-07-06 00:01:01 ; birthday
     @commands.has_permissions(kick_members=True) # 
     async def cdAdd(self, ctx, *, message):
 
@@ -187,7 +205,6 @@ class AdminCom(commands.Cog):
 
         # @commands.event()
         # async def cdAnnouncement(ctx):
-
 
 """
     End of Admin Commands
