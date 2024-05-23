@@ -42,6 +42,7 @@ async def on_ready():
         for id in f:
             ids.add(id.strip())
 
+##### Some weird addition
 
 @bot.event
 async def on_message(message):
