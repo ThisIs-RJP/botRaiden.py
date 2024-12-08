@@ -2,3 +2,4 @@ archive/
 venv/
 token.env
 playground.py
+__pycache__/
