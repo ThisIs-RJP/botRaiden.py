@@ -29,13 +29,19 @@ COLORS: list = [0xFFE4E1, 0x00FF7F, 0xD8BFD8, 0xDC143C, 0xFF4500, 0xDEB887, 0xAD
 # }
 
 COMMAND_DICT: dict = {
-    "quote" : ["Help Command", "Usage: *r!quote @<USER>[]<query*", "Be sure to include the user! You can't quote a non existent person"]
+    "quote" : ["Help Command", "Usage: *r!quote @<USER>[]<query*", "Be sure to include the user! You can't quote a non existent person"],
+    "specisay" : ["Specific Say Command", "Usage: *r!help <title name> <message>*", "Inputs = [anything as long as the length of the message > 0]\nSends your message through an embed, useful for announcements\nFormat: **r!specisay [This the title] This is the con"],
 }
 
 HELPDICT: dict = {
-    "fun"   : ["Fun Commands (cap sensitive)", False, "Here are our Fun commands", "poll\ngoogle\nsay\n\nkiss"],
+    "fun"   : ["Fun Commands (cap sensitive)", False, "Here are our Fun commands", "quote\nkiss"],
     "admin" : ["Admin commands (cap sensitive, must have specific admin perms to call)", False, "Here are your admin commands", "clear\nsay\nspecisay\ncdAdd\ncdFormat\naddrole\nremoverole"]
 }
+
+KISS_LIST: list = ["https://aniyuki.com/wp-content/uploads/2021/07/aniyuki-anime-gif-kiss-14.gif",
+                   "https://media.tenor.com/YKd-wOisWB0AAAAC/anime-kiss.gif",
+                   "https://media.tenor.com/6N4fuTkgpRIAAAAC/enage-kiss-anime-kiss.gif",
+                   ]
 
 COMMAND_STR: list = ["I wonder what you'll do with this information...", "r! is the prefix for this bot!", "Having fun?", "Currently adding new commands!"]
 

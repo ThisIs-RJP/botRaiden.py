@@ -4,6 +4,7 @@ from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions, CheckFailure
 from outputs import *
 import datetime
+import string
 
 ### Importing my cogs
 class AdminCom(commands.Cog):
@@ -31,5 +32,32 @@ class AdminCom(commands.Cog):
             timestamp=datetime.datetime.utcnow()
             )
 
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def specisay(self, ctx, *,message, amount=1):
+        await ctx.channel.purge(limit=amount)
+        x = message.split()
+        new = []
+        title = []
+        loop = 0
+        for i in range(len(x)):
+            if "]" in x[i]:
+                title.append(x[i])    
+                loop = i + 1
+                while loop < len(x):
+                    new.append(x[loop])
+                    loop = loop + 1
+                break
+
+            else:
+                title.append(x[i])
+
+        embed = discord.Embed(
+            title="{}".format((" ".join(title)).translate(str.maketrans('', '', string.punctuation))),
+            color=random.choice(COLORS)
+        )
+        embed.set_footer(text=" ".join(new))
+        embed.set_author(name=ctx.author.name)
         await ctx.send(embed=embed)
 
